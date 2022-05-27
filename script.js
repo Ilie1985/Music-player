@@ -67,6 +67,35 @@ const pauseSong = () => {
 };
 //=====================================================================
 
+//prevSong FUNCTIONALITY
+
+//take the songIndex and decrease it by 1 with -- (double minus)
+
+const prevSong = () => {
+  songIndex--;
+
+  if (songIndex < 0) {
+    songIndex = songs.length - 1;
+  }
+  loadSong(songs[songIndex]);
+  playSong();
+};
+//=====================================================================
+
+//nextSong FUNCTIONALITY
+
+//if songIndex is greater than songs.length(3) -1 which gives us the song with index 2 ,the last song than take me back to the first song songIndex=0
+
+const nextSong = () => {
+  songIndex++;
+
+  if (songIndex > songs.length - 1) {
+    songIndex = 0;
+  }
+  loadSong(songs[songIndex]);
+  playSong();
+};
+
 //EVENT LISTENERS
 
 //playBtn
@@ -83,4 +112,8 @@ playBtn.addEventListener("click", () => {
     playSong();
   }
 });
+
+//switch songs
+prevBtn.addEventListener("click", prevSong);
+nextBtn.addEventListener("click", nextSong);
 ///======================================================================
