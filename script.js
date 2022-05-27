@@ -95,6 +95,24 @@ const nextSong = () => {
   loadSong(songs[songIndex]);
   playSong();
 };
+//==========================================================================
+
+//updateProgress FUNCTIONALITY
+
+//take in an event param
+//get duration and currentTime from srcElement
+//destructure duration and current time
+//console.log(duration,currentTime) and get duration and currentTime
+//create a variable ,asign it to currentTime and divide it to durationand multiply by 100 to get the actual  gone percentage  of the song that is being played
+// progress.style.width is the actual progress bar in the DOM i asign it to the actual  gone percentage  of the song that is being played 
+
+const updateProgress = (e) => {
+  const { duration, currentTime } = e.srcElement;
+  // console.log(duration, currentTime);
+  const progressPercent = currentTime / duration;
+  progress.style.width=`${progressPercent}%`
+};
+//=========================================================================
 
 //EVENT LISTENERS
 
@@ -116,4 +134,7 @@ playBtn.addEventListener("click", () => {
 //switch songs
 prevBtn.addEventListener("click", prevSong);
 nextBtn.addEventListener("click", nextSong);
+
+//time/song update event
+audio.addEventListener("timeupdate", updateProgress);
 ///======================================================================
