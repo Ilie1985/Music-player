@@ -104,16 +104,35 @@ const nextSong = () => {
 //destructure duration and current time
 //console.log(duration,currentTime) and get duration and currentTime
 //create a variable ,asign it to currentTime and divide it to durationand multiply by 100 to get the actual  gone percentage  of the song that is being played
-// progress.style.width is the actual progress bar in the DOM i asign it to the actual  gone percentage  of the song that is being played 
+// progress.style.width is the actual progress bar in the DOM i asign it to the actual  gone percentage  of the song that is being played
 
 const updateProgress = (e) => {
   const { duration, currentTime } = e.srcElement;
   // console.log(duration, currentTime);
-  const progressPercent = currentTime / duration;
-  progress.style.width=`${progressPercent}%`
+  const progressPercent = (currentTime / duration) * 100;
+  progress.style.width = `${progressPercent}%`;
 };
 //=========================================================================
 
+//setProgress FUNCTIONALITY
+
+//make the song jump where you click on the bar
+//assign width variable to this keyword .clientWidth
+//take in an event param
+//get the X offset with the e param and offsetX
+//get the duration from the audio api audio.duration
+//set the current time of the audioto the right position
+
+//i cant resolve this issue ,still looking for a solution---> script.js:131 Uncaught TypeError: Failed to set the 'currentTime' property on 'HTMLMediaElement': The provided double value is non-finite.
+
+// const setProgress = (e) => {
+//   const width = this.clientWidth;
+//   const clickX = e.offsetX;
+//   const duration = audio.duration;
+
+//   audio.currentTime = (clickX / width) * duration;
+// };
+//===========================================================================
 //EVENT LISTENERS
 
 //playBtn
@@ -137,4 +156,12 @@ nextBtn.addEventListener("click", nextSong);
 
 //time/song update event
 audio.addEventListener("timeupdate", updateProgress);
+
+// click on progress bar
+progressContainer.addEventListener("click", setProgress);
+
+//song ending
+
+audio.addEventListener("ended", nextSong);
+
 ///======================================================================
